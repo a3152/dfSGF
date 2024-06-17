@@ -4,20 +4,23 @@ from pandas import DataFrame
 from PyPDF2 import PdfReader
 from datetime import datetime
 
-#importando arquivos
+#importando funcoes
 from functions import DTref, buscaNomeArquivo
 
+#Definir input de data
 x = input('Qual a data de referencia? (ex:2024-12-01) ')
-#definindo caminho para busca de arquivos
-#caminho = "C:/Users/cesargl/OneDrive - SERVICO DE APOIO AS MICRO E PEQUENAS EMPRESAS DE SAO PAULO - SEBRAE/.git/scriptsSebrae_/teste_arquivos"
-caminho = r"C:\Users\cesargl\OneDrive - SERVICO DE APOIO AS MICRO E PEQUENAS EMPRESAS DE SAO PAULO - SEBRAE\Contratos"
 
+
+#Inicio da Main
 def main():
+ #atribuindo data dentro da main
  if x is not None:
     try:
+        #atribuindo data dentro da funcao
         buscaNomeArquivo(x)
     except Exception as e:
          print("erro") 
 
+#Fim da main
 if __name__ == "__main__":
       main()    
