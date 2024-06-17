@@ -6,6 +6,7 @@ from dateutil.parser import parse
 import os
 import pandas as pd
 import time
+import numpy as np
 
 #pegar data de referecia
 def DTref(data2:datetime):
@@ -26,8 +27,12 @@ def buscaNomeArquivo(data:datetime):
    caminhos = [os.path.join(pasta, nome) for nome in os.listdir(pasta)]
    arquivos = [arq for arq in caminhos if os.path.isfile(arq)]
    pdfs = [arq for arq in arquivos if arq.lower().endswith(".pdf")]
-   comparaDatas = [ datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y') \
-                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y') <= DataReferencia[0]]
+   comparaDatas = [(datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y')\
+                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y') <= DataReferencia[0]),\
+                     (os.path.basename(arq)\
+                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y') <= DataReferencia[0])]
+   
 
-   df = pd.DataFrame(comparaDatas)
+   df = pd.DataFrame(comparaDatas).transpose()
+
    print(df)
