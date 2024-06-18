@@ -28,11 +28,16 @@ def buscaNomeArquivo(data:datetime):
    arquivos = [arq for arq in caminhos if os.path.isfile(arq)]
    pdfs = [arq for arq in arquivos if arq.lower().endswith(".pdf")]
    comparaDatas = [(datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y')\
-                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y') <= DataReferencia[0]),\
+                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),\
+                                                         '%a %b %d %H:%M:%S %Y') <= DataReferencia[0]),\
                      (os.path.basename(arq)\
-                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),'%a %b %d %H:%M:%S %Y') <= DataReferencia[0])]
+                    for arq in pdfs if datetime.strptime(time.ctime(os.path.getmtime(arq)),\
+                                                         '%a %b %d %H:%M:%S %Y') <= DataReferencia[0])]
    
 
    df = pd.DataFrame(comparaDatas).transpose()
+   df.columns = ['DATA','ARQUIVO']
 
    print(df)
+   
+

@@ -18,8 +18,10 @@ def main():
     try:
         #atribuindo data dentro da funcao
         buscaNomeArquivo(x)
-    except Exception as e:
-         print("erro") 
+    #except Exception as e:
+         #print("erro")
+    finally:
+        print('FINALIZADO') 
 
 #Fim da main
 if __name__ == "__main__":
