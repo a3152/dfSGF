@@ -5,10 +5,11 @@ from PyPDF2 import PdfReader
 from datetime import datetime
 
 #importando funcoes
-from functions import DTref, buscaNomeArquivo
+from functions import buscaNomeArquivo
 
 #Definir input de data
-x = input('Qual a data de referencia? (ex:2024-12-01) ')
+
+x = input('Qual a data de partida (menor ou igual a  '  + datetime.now().strftime("%Y/%m/%d") + ')? (insira no formato AAAA-MM-DD ex:2024-01-01) ')
 
 
 #Inicio da Main
@@ -18,10 +19,13 @@ def main():
     try:
         #atribuindo data dentro da funcao
         buscaNomeArquivo(x)
+        
+
     #except Exception as e:
          #print("erro")
     finally:
         print('FINALIZADO') 
+        input("Pressione <enter> para encerrar!") 
 
 #Fim da main
 if __name__ == "__main__":
